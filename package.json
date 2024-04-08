@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@streamr/sdk": "^100.2.2",
+    "bignumber.js": "^9.1.2"
+  }
+}
