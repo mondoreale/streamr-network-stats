@@ -16,7 +16,13 @@ if (!NetworkSubgraphUrl) {
 const PublisherPrivKey = process.env.PUBLISHER_PRIV_KEY
 
 if (!PublisherPrivKey) {
-    throw new Error('Define PUBLISHER_PRIV_KEY')
+    throw new Error('Define PUBLISHER_PRIV_KEY!')
+}
+
+const StreamId = process.env.STREAM_ID
+
+if (!StreamId) {
+    throw new Error('Define STREAM_ID!')
 }
 
 async function getTvlAndApy() {
@@ -121,15 +127,9 @@ void (async () => {
 
     const message = { tvl, apy, nodeCount }
 
-    await client.subscribe(
-        '0x22c813c37d696e9190102c487c3715eccd71781c/metrics',
-        () => {
-            process.exit()
-        },
-    )
+    await client.subscribe(StreamId, () => {
+        process.exit()
+    })
 
-    await client.publish(
-        '0x22c813c37d696e9190102c487c3715eccd71781c/metrics',
-        message,
-    )
+    await client.publish(StreamId, message)
 })()
