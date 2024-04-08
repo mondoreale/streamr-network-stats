@@ -1,17 +1,13 @@
 const { StreamrClient } = require('@streamr/sdk')
 const BigNumber = require('bignumber.js')
 
-const IndexerSubgraphUrl = process.env.INDEXER_SUBGRAPH_URL
+const IndexerSubgraphUrl =
+    process.env.INDEXER_SUBGRAPH_URL ||
+    'https://stream-metrics.streamr.network/api'
 
-if (!IndexerSubgraphUrl) {
-    throw new Error('Define INDEXER_SUBGRAPH_URL!')
-}
-
-const NetworkSubgraphUrl = process.env.NETWORK_SUBGRAPH_URL
-
-if (!NetworkSubgraphUrl) {
-    throw new Error('Define NETWORK_SUBGRAPH_URL!')
-}
+const NetworkSubgraphUrl =
+    process.env.NETWORK_SUBGRAPH_URL ||
+    'https://gateway-arbitrum.network.thegraph.com/api/8bcbd55cdd1369cadb0bb813d9817776/subgraphs/id/EGWFdhhiWypDuz22Uy7b3F69E9MEkyfU9iAQMttkH5Rj'
 
 const PublisherPrivKey = process.env.PUBLISHER_PRIV_KEY
 
